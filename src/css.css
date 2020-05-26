@@ -1,0 +1,23 @@
+.root {
+-fx-base: #ad5555;
+-fx-background: rgb(50, 50, 50);
+-fx-control-inner-background:  rgb(50, 50, 50);
+}
+ 
+.menu-bar {
+-fx-background-color: linear-gradient(to bottom, -fx-base, derive(-fx-base,40%));
+}
+ 
+.button {
+-fx-background-color: #ad5555;
+}
+ 
+.button:hover {
+-fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+-fx-color: -fx-hover-base;
+}
+
+.togglebutton:hover {
+-fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+-fx-color: -fx-hover-base;
+}

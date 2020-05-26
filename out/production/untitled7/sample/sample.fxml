@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <top>
+        <VBox prefHeight="34.0" prefWidth="1151.0" BorderPane.alignment="CENTER">
+           <children>
+               <MenuBar prefHeight="24.0" prefWidth="1288.0">
+                  <menus>
+                      <Menu text="File">
+                         <items>
+                             <MenuItem onAction="#onSave" text="Save" />
+                             <MenuItem onAction="#onExit" text="Exit" />
+                         </items>
+                      </Menu>
+                  </menus>
+               </MenuBar>
+           </children>
+        </VBox>
+    </top>
+
+    <right>
+        <VBox prefHeight="600.0" prefWidth="242.0" BorderPane.alignment="CENTER">
+            <children>
+                <Accordion prefHeight="271.0" prefWidth="212.0">
+                    <panes>
+                        <TitledPane text="Canvas">
+                     <content>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                                            <Label text="Height" GridPane.rowIndex="1" />
+                              <ColorPicker fx:id="backgroundColour" prefHeight="25.0" prefWidth="91.0" GridPane.rowIndex="3" />
+                              <Button fx:id="setBackgroundCol" prefHeight="25.0" prefWidth="140.0" text="Set Background Colour" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                            <Button fx:id="resizeCanvas" text="Resize" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                            <Button fx:id="clearCanvas" text="Clear" GridPane.rowIndex="2" />
+                                            <TextField fx:id="tfCanvasH" promptText="500" text="500" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                            <TextField fx:id="tfCanvasW" promptText="700" text="700" GridPane.columnIndex="1" />
+                                            <Label text="Width" />
+                           </children>
+                        </GridPane>
+                     </content>
+                        </TitledPane>
+                  <TitledPane layoutX="10.0" layoutY="35.0" text="Brush properties">
+                     <content>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Stroke Size" />
+                              <Label text="Stroke Colour" GridPane.rowIndex="1" />
+                              <ColorPicker fx:id="brushStroke" promptText="Stroke Colour" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label text="Opacity" GridPane.rowIndex="2" />
+                              <Slider fx:id="brushOpacity" max="1.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Slider fx:id="brushSize" prefHeight="21.0" prefWidth="118.0" GridPane.columnIndex="1" />
+                           </children>
+                        </GridPane>
+                     </content>
+                  </TitledPane>
+                        <TitledPane text="Tool properties">
+                     <content>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                                            <Label text="Stroke Size" />
+                                            <Slider fx:id="shapeStrokeSize" prefHeight="21.0" prefWidth="118.0" GridPane.columnIndex="1" />
+                                            <Label text="Fill Colour" GridPane.rowIndex="1" />
+                                            <ColorPicker fx:id="shapeFill" promptText="Fill Colour" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                            <Label text="Stroke Colour" GridPane.rowIndex="2" />
+                                            <ColorPicker fx:id="shapeStroke" promptText="Stroke Colour" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                            <Label text="Opacity" GridPane.rowIndex="3" />
+                                            <Slider fx:id="shapeOpacity" max="1.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <CheckBox fx:id="filled" text="Filled?" GridPane.rowIndex="4" />
+                           </children>
+                        </GridPane>
+                     </content>
+                        </TitledPane>
+                        <TitledPane layoutX="10.0" layoutY="35.0" prefHeight="400.0" prefWidth="242.0" text="Text Properties">
+                     <content>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                                            <Label text="Text" />
+                                            <TextField fx:id="writeText" prefHeight="25.0" prefWidth="157.0" GridPane.columnIndex="1" />
+                              <Label text="Font" GridPane.rowIndex="1" />
+                              <ChoiceBox fx:id="selectFont" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                            <Label text="Text Stroke" GridPane.rowIndex="2" />
+                                            <ColorPicker fx:id="textStroke" promptText="Fill Colour" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Text Fill" GridPane.rowIndex="3" />
+                              <ColorPicker fx:id="textFill" promptText="Fill Colour" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label text="Text Size" GridPane.rowIndex="4" />
+                              <Slider fx:id="textSize" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                            <Label text="Stroke Size" GridPane.rowIndex="5" />
+                                            <Slider fx:id="textStrokeSize" max="1.0" prefHeight="14.0" prefWidth="125.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label text="Opacity" GridPane.rowIndex="6" />
+                              <Slider fx:id="textOpacity" max="1.0" prefHeight="14.0" prefWidth="141.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                           </children>
+                        </GridPane>
+                     </content>
+                        </TitledPane>
+                    </panes>
+                </Accordion>
+            </children>
+        </VBox>
+    </right>
+
+    <center>
+        <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="600" prefWidth="800" style="-fx-background-color: gray;">
+            <content>
+                <StackPane fx:id="mainPane" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="500" prefWidth="700" BorderPane.alignment="CENTER" StackPane.alignment="CENTER" />
+                        <Canvas fx:id="canvas" height="500" style="-fx-background-color: white;" width="700" BorderPane.alignment="CENTER" StackPane.alignment="CENTER">
+                        </Canvas>
+                    </children>
+                </StackPane>
+            </content>
+        </ScrollPane>
+    </center>
+   <bottom>
+      <VBox alignment="CENTER" prefHeight="14.0" prefWidth="1151.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="James Erdem 2020" />
+         </children>
+      </VBox>
+   </bottom>
+   <left>
+      <VBox alignment="CENTER" prefHeight="600.0" prefWidth="169.0" spacing="3.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="55.0" prefWidth="100.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                            <Button fx:id="undo" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="25.0" textAlignment="CENTER">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/undo.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Label text="Undo" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                            <Button fx:id="redo" prefWidth="25.0">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/redo.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Label text="Redo" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+
+                                                                <ToggleButton fx:id="brush">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/brush.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </ToggleButton>
+            <Label text="Brush" />
+            <Separator layoutX="10.0" layoutY="94.0" prefWidth="200.0" />
+                <ToggleButton fx:id="eraser">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/eraser.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </ToggleButton>
+            <Label text="Eraser" />
+            <Separator layoutX="10.0" layoutY="178.0" prefWidth="200.0" />
+                <ToggleButton fx:id="rectangle">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/rectangle.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </ToggleButton>
+            <Label text="Rectangle" />
+            <Separator layoutX="10.0" layoutY="263.0" prefWidth="200.0" />
+                <ToggleButton fx:id="ellipse">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ellipse.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </ToggleButton>
+            <Label text="Ellipse" />
+            <Separator layoutX="10.0" layoutY="347.0" prefWidth="200.0" />
+                <ToggleButton fx:id="line">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/line.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </ToggleButton>
+            <Label text="Line" />
+            <Separator layoutX="10.0" layoutY="432.0" prefWidth="200.0" />
+                <ToggleButton fx:id="text">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/text.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </ToggleButton>
+            <Label text="Text" />
+         </children>
+      </VBox>
+   </left>
+</BorderPane>
